@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:bin_buddy/screens/onboarding_screen.dart';
 // <-- onboarding Screen import
 
 class SplashScreen extends StatefulWidget {
@@ -14,14 +15,14 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
 
-    // Navigate to WelcomeScreen after 3 seconds
-    // Timer(const Duration(seconds: 3), () {
-    //   if (context.mounted) {
-    //     Navigator.of(context).pushReplacement(
-    //       MaterialPageRoute(builder: (context) => const WelcomeScreen()),
-    //     );
-    //   }
-    // });
+    // Navigate to OnboardingScreen after 3 seconds
+    Timer(const Duration(seconds: 3), () {
+      if (context.mounted) {
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => const OnboardingScreen()),
+        );
+      }
+    });
   }
 
   @override
@@ -32,15 +33,15 @@ class _SplashScreenState extends State<SplashScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              // Logo (same style as your classmate)
+              // Logo
               Image.asset(
                 "assets/images/logo.jpg", // <-- Your logo
                 height: MediaQuery.of(context).size.height * 0.6,
                 fit: BoxFit.contain,
               ),
 
-              // App Title (optional)
-              Text(
+              // App Title
+              const Text(
                 "Buddy App",
                 style: TextStyle(
                   fontSize: 28,
