@@ -1,3 +1,4 @@
+import 'package:bin_buddy/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:bin_buddy/widgets/my_button.dart';
 // import 'package:bin_buddy/screens/login_screen.dart'; // <-- Import LoginScreen
@@ -15,17 +16,17 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   final List<Map<String, String>> onboardingData = [
     {
-      "image": "assets/images/logo.png",
+      "image": "assets/images/logo.jpg",
       "title": "Welcome to Buddy App!",
       "subtitle": "Keep your tasks organized and tidy.",
     },
     {
-      "image": "assets/images/logo.png",
+      "image": "assets/images/logo.jpg",
       "title": "Track your progress",
       "subtitle": "Check off tasks and stay productive every day.",
     },
     {
-      "image": "assets/images/logo.png",
+      "image": "assets/images/logo.jpg",
       "title": "Make a Greener Choice",
       "subtitle": "You are ready to start using the app.",
     },
@@ -90,19 +91,19 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 color: currentPage == onboardingData.length - 1
                     ? Colors.greenAccent.shade400
                     : Colors.green,
-                // onPressed: () {
-                //   if (currentPage == onboardingData.length - 1) {
-                //     Navigator.pushReplacement(
-                //       context,
-                //       MaterialPageRoute(builder: (_) => const LoginScreen()),
-                //     );
-                //   } else {
-                //     _controller.nextPage(
-                //       duration: const Duration(milliseconds: 300),
-                //       curve: Curves.easeIn,
-                //     );
-                //   }
-                // },
+                onPressed: () {
+                  if (currentPage == onboardingData.length - 1) {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (_) => const LoginScreen()),
+                    );
+                  } else {
+                    _controller.nextPage(
+                      duration: const Duration(milliseconds: 300),
+                      curve: Curves.easeIn,
+                    );
+                  }
+                },
               ),
             ),
           ],
