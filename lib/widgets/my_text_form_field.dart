@@ -4,9 +4,10 @@ import 'package:google_fonts/google_fonts.dart';
 class MyTextFormField extends StatelessWidget {
   final String label;
   final Color underlineColor;
-  final bool obscureText; // true = text should be hidden
+  final bool obscureText;
   final bool showToggle;
   final VoidCallback? onToggle;
+  final TextEditingController? controller; // <-- Add this
 
   const MyTextFormField({
     super.key,
@@ -15,12 +16,14 @@ class MyTextFormField extends StatelessWidget {
     this.obscureText = false,
     this.showToggle = false,
     this.onToggle,
+    this.controller, // <-- Add this
   });
 
   @override
   Widget build(BuildContext context) {
     return TextField(
-      obscureText: obscureText, // <-- CORRECT behavior
+      controller: controller, // <-- Add this
+      obscureText: obscureText,
       style: GoogleFonts.inter(color: Colors.black87),
       decoration: InputDecoration(
         labelText: label,
@@ -36,10 +39,7 @@ class MyTextFormField extends StatelessWidget {
         suffixIcon: showToggle
             ? IconButton(
                 icon: Icon(
-                  obscureText
-                      ? Icons
-                            .visibility_off // hidden → show crossed eye
-                      : Icons.visibility, // visible → show open eye
+                  obscureText ? Icons.visibility_off : Icons.visibility,
                   color: underlineColor,
                 ),
                 onPressed: onToggle,

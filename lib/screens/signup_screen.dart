@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:bin_buddy/widgets/my_button.dart';
 import 'package:bin_buddy/widgets/my_text_form_field.dart';
+import 'package:bin_buddy/screens/home_screen.dart';
+import 'package:bin_buddy/common/snackbar_helper.dart'; // <-- Your snackbar file
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -13,6 +15,13 @@ class SignupScreen extends StatefulWidget {
 class _SignupScreenState extends State<SignupScreen> {
   bool passwordVisible = false;
   bool confirmPasswordVisible = false;
+
+  // Controllers for each input field
+  final TextEditingController fullNameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
 
   final Color background = const Color(0xFFFCEEEE);
   final Color deepGreen = const Color(0xFF1F5E24);
@@ -33,6 +42,7 @@ class _SignupScreenState extends State<SignupScreen> {
               children: [
                 const SizedBox(height: 20),
 
+                // Logo
                 Center(
                   child: Image.asset(
                     'assets/images/logo.jpg',
@@ -43,6 +53,7 @@ class _SignupScreenState extends State<SignupScreen> {
 
                 const SizedBox(height: 12),
 
+                // Title
                 Text(
                   'Create Account',
                   style: GoogleFonts.playfairDisplay(
@@ -56,6 +67,7 @@ class _SignupScreenState extends State<SignupScreen> {
 
                 // FULL NAME
                 MyTextFormField(
+                  controller: fullNameController,
                   label: "Full Name",
                   underlineColor: underlineGreen,
                 ),
@@ -63,12 +75,17 @@ class _SignupScreenState extends State<SignupScreen> {
                 const SizedBox(height: 22),
 
                 // EMAIL
-                MyTextFormField(label: "Email", underlineColor: underlineGreen),
+                MyTextFormField(
+                  controller: emailController,
+                  label: "Email",
+                  underlineColor: underlineGreen,
+                ),
 
                 const SizedBox(height: 22),
 
                 // PASSWORD
                 MyTextFormField(
+                  controller: passwordController,
                   label: "Password",
                   underlineColor: underlineGreen,
                   obscureText: !passwordVisible,
@@ -82,6 +99,7 @@ class _SignupScreenState extends State<SignupScreen> {
 
                 // CONFIRM PASSWORD
                 MyTextFormField(
+                  controller: confirmPasswordController,
                   label: "Confirm Password",
                   underlineColor: underlineGreen,
                   obscureText: !confirmPasswordVisible,
@@ -96,10 +114,47 @@ class _SignupScreenState extends State<SignupScreen> {
                 const SizedBox(height: 28),
 
                 // SIGN UP BUTTON
-                MyButton(text: "Sign Up", color: deepGreen, onPressed: () {}),
+                MyButton(
+                  text: "Sign Up",
+                  color: deepGreen,
+                  onPressed: () {
+                    // Validation
+                    if (fullNameController.text.isEmpty ||
+                        emailController.text.isEmpty ||
+                        passwordController.text.isEmpty ||
+                        confirmPasswordController.text.isEmpty) {
+                      showMySnackBar(
+                        context: context,
+                        message: "Please fill in all fields",
+                        backgroundColor: Colors.red,
+                      );
+                    } else if (passwordController.text !=
+                        confirmPasswordController.text) {
+                      showMySnackBar(
+                        context: context,
+                        message: "Passwords do not match",
+                        backgroundColor: Colors.red,
+                      );
+                    } else {
+                      // Success
+                      showMySnackBar(
+                        context: context,
+                        message: "Signup Successful",
+                        backgroundColor: Colors.green,
+                      );
+
+                      // Navigate to HomeScreen
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (_) => const HomeScreen()),
+                      );
+                    }
+                  },
+                ),
 
                 const SizedBox(height: 20),
 
+                // Already have account? Login
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
