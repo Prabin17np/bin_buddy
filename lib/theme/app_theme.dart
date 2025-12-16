@@ -29,7 +29,7 @@ class AppTheme {
       elevation: 10,
     ),
 
-    // ✍️ Input Decoration Theme
+    // Input Decoration Theme
     inputDecorationTheme: const InputDecorationTheme(
       filled: true,
       fillColor: Colors.white,

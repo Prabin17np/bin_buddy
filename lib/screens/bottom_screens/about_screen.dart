@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-class AboutScreen extends StatefulWidget {
+class AboutScreen extends StatelessWidget {
   const AboutScreen({super.key});
 
   @override
-  State<AboutScreen> createState() => _AboutScreenState();
-}
-
-class _AboutScreenState extends State<AboutScreen> {
-  @override
   Widget build(BuildContext context) {
-    return SizedBox.expand(child: Center(child: Text("About Screen")));
+    return Center(
+      child: Text(
+        "About Screen",
+        style: Theme.of(context).textTheme.titleLarge,
+      ),
+    );
   }
 }

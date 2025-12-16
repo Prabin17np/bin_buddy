@@ -1,9 +1,9 @@
+import 'package:bin_buddy/screens/bottom_navigation_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:bin_buddy/widgets/my_button.dart';
 import 'package:bin_buddy/widgets/my_text_form_field.dart';
 import 'package:bin_buddy/screens/signup_screen.dart';
-import 'package:bin_buddy/screens/home_screen.dart';
 import 'package:bin_buddy/common/snackbar_helper.dart'; // <-- Your snackbar file
 
 class LoginScreen extends StatefulWidget {
@@ -98,7 +98,9 @@ class _LoginScreenState extends State<LoginScreen> {
 
                       Navigator.pushReplacement(
                         context,
-                        MaterialPageRoute(builder: (_) => const HomeScreen()),
+                        MaterialPageRoute(
+                          builder: (_) => const BottomNavigationScreen(),
+                        ),
                       );
                     }
                   },

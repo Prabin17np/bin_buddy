@@ -1,20 +1,14 @@
 import 'package:flutter/material.dart';
 
-class ScanBottomScreen extends StatefulWidget {
+class ScanBottomScreen extends StatelessWidget {
   const ScanBottomScreen({super.key});
 
-  @override
-  State<ScanBottomScreen> createState() => _ScanBottomScreenState();
-}
-
-class _ScanBottomScreenState extends State<ScanBottomScreen> {
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          // Placeholder Image Container
           Container(
             width: 250,
             height: 250,
@@ -22,43 +16,23 @@ class _ScanBottomScreenState extends State<ScanBottomScreen> {
               color: Colors.grey.shade300,
               borderRadius: BorderRadius.circular(12),
             ),
-            child: const Icon(Icons.image, size: 80, color: Colors.grey),
+            child: const Icon(Icons.image, size: 80),
           ),
 
           const SizedBox(height: 30),
 
-          // Camera Button
           ElevatedButton.icon(
-            onPressed: () {
-              // Add Teachable Machine camera logic later
-            },
+            onPressed: () {},
             icon: const Icon(Icons.camera_alt),
             label: const Text("Take Photo"),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.green,
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-            ),
           ),
 
           const SizedBox(height: 10),
 
-          // Gallery Button
           ElevatedButton.icon(
-            onPressed: () {
-              // Add Teachable Machine gallery logic later
-            },
+            onPressed: () {},
             icon: const Icon(Icons.photo_library),
             label: const Text("Pick from Gallery"),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.blue,
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-            ),
           ),
         ],
       ),
