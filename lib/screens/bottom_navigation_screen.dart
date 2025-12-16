@@ -42,9 +42,6 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
             _selectedIndex = index;
           });
         },
-        backgroundColor: Colors.white,
-        selectedItemColor: Colors.blue,
-        unselectedItemColor: Colors.blueGrey,
       ),
       body: lstBottomScreen[_selectedIndex],
     );

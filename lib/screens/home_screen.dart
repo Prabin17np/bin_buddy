@@ -1,30 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class HomeBottomScreen extends StatelessWidget {
+  const HomeBottomScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "Home",
-          style: GoogleFonts.playfairDisplay(fontWeight: FontWeight.bold),
-        ),
-        backgroundColor: Colors.green,
-        centerTitle: true,
-      ),
-      body: Center(
-        child: Text(
-          "Welcome to Buddy App!",
-          style: GoogleFonts.playfairDisplay(
-            fontSize: 28,
-            fontWeight: FontWeight.w700,
-            color: Colors.black87,
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "Welcome to Buddy App!",
+            style: Theme.of(context).textTheme.headlineMedium,
           ),
-          textAlign: TextAlign.center,
-        ),
+
+          const SizedBox(height: 20),
+
+          Container(
+            padding: const EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.surfaceVariant,
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: const Text("This is your home dashboard..."),
+          ),
+        ],
       ),
     );
   }

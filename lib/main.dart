@@ -1,3 +1,4 @@
+import 'package:bin_buddy/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:bin_buddy/screens/splash_screen.dart';
 
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Buddy App',
-      theme: ThemeData(primarySwatch: Colors.green),
+      theme: AppTheme.lightTheme,
       home: const SplashScreen(),
     );
   }
