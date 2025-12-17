@@ -1,4 +1,4 @@
-import 'package:bin_buddy/screens/bottom_screens/about_screen.dart';
+import 'package:bin_buddy/screens/bottom_screens/overview_screen.dart';
 import 'package:bin_buddy/screens/bottom_screens/home_bottom_screen.dart';
 import 'package:bin_buddy/screens/bottom_screens/scan_bottom_screen.dart';
 import 'package:bin_buddy/screens/bottom_screens/search_bottom_screen.dart';

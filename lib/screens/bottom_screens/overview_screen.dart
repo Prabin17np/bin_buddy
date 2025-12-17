@@ -7,7 +7,7 @@ class AboutScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Text(
-        "About Screen",
+        "Overview Screen",
         style: Theme.of(context).textTheme.titleLarge,
       ),
     );

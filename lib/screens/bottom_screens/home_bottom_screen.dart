@@ -5,27 +5,40 @@ class HomeBottomScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      padding: const EdgeInsets.all(16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            "Welcome to Buddy App!",
-            style: Theme.of(context).textTheme.headlineMedium,
-          ),
+    return Scaffold(
+      appBar: AppBar(title: const Text("Bin Buddy"), centerTitle: true),
 
-          const SizedBox(height: 20),
-
-          Container(
-            padding: const EdgeInsets.all(20),
-            decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.surfaceContainerHigh,
-              borderRadius: BorderRadius.circular(12),
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "Welcome 👋",
+              style: Theme.of(context).textTheme.headlineSmall,
             ),
-            child: const Text("This is your home dashboard..."),
-          ),
-        ],
+
+            const SizedBox(height: 8),
+
+            Text(
+              "Choose an option below to continue",
+              style: Theme.of(context).textTheme.bodyMedium,
+            ),
+
+            const SizedBox(height: 30),
+
+            // Home Buttons
+            ElevatedButton(onPressed: () {}, child: const Text("Scan Item")),
+
+            const SizedBox(height: 12),
+
+            ElevatedButton(onPressed: () {}, child: const Text("Search Waste")),
+
+            const SizedBox(height: 12),
+
+            ElevatedButton(onPressed: () {}, child: const Text("About App")),
+          ],
+        ),
       ),
     );
   }

@@ -18,7 +18,7 @@ class AppTheme {
       ),
     ),
 
-    // ⬇️ Bottom Navigation Theme
+    //Bottom Navigation Theme
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: Colors.white,
       selectedItemColor: Color(0xFF1F5E24),
