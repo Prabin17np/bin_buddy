@@ -34,7 +34,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
           BottomNavigationBarItem(icon: Icon(Icons.scanner), label: "Scan"),
           BottomNavigationBarItem(icon: Icon(Icons.search), label: "Search"),
-          BottomNavigationBarItem(icon: Icon(Icons.info), label: "About"),
+          BottomNavigationBarItem(icon: Icon(Icons.info), label: "Overview"),
         ],
         currentIndex: _selectedIndex,
         onTap: (index) {
