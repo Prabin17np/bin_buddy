@@ -1,4 +1,4 @@
-import 'package:bin_buddy/screens/bottom_navigation_screen.dart';
+import 'package:bin_buddy/features/dashboard/presentation/pages/bottom_navigation_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:bin_buddy/widgets/my_button.dart';

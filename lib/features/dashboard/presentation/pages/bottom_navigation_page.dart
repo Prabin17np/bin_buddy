@@ -1,7 +1,7 @@
-import 'package:bin_buddy/screens/bottom_screens/overview_screen.dart';
-import 'package:bin_buddy/screens/bottom_screens/home_bottom_screen.dart';
-import 'package:bin_buddy/screens/bottom_screens/scan_bottom_screen.dart';
-import 'package:bin_buddy/screens/bottom_screens/search_bottom_screen.dart';
+import 'package:bin_buddy/features/dashboard/presentation/pages/bottom_pages/overview_page.dart';
+import 'package:bin_buddy/features/dashboard/presentation/pages/bottom_pages/home_bottom_page.dart';
+import 'package:bin_buddy/features/dashboard/presentation/pages/bottom_pages/scan_bottom_page.dart';
+import 'package:bin_buddy/features/dashboard/presentation/pages/bottom_pages/search_bottom_page.dart';
 import 'package:flutter/material.dart';
 
 class BottomNavigationScreen extends StatefulWidget {

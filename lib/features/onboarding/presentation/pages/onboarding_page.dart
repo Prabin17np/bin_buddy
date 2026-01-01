@@ -1,4 +1,4 @@
-import 'package:bin_buddy/screens/login_screen.dart';
+import 'package:bin_buddy/features/auth/presentation/pages/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:bin_buddy/widgets/my_button.dart';
 // import 'package:bin_buddy/screens/login_screen.dart'; // <-- Import LoginScreen

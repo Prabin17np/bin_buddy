@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:bin_buddy/screens/onboarding_screen.dart';
+import 'package:bin_buddy/features/onboarding/presentation/pages/onboarding_page.dart';
 // <-- onboarding Screen import
 
 class SplashScreen extends StatefulWidget {
