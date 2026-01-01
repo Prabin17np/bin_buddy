@@ -11,6 +11,9 @@ class HiveTableConstant {
   static const int recyclingProgressTypeId = 1;
   static const String recyclingProgressTable = 'recycling_progress_table';
 
+  static const int batchTypeId = 2; // New type ID for batch
+  static const String batchTable = 'batch_table'; // Hive box name for batches
+
   // Recycling Categories
   static const String plasticCategory = "Plastic";
   static const String paperCategory = "Paper";
