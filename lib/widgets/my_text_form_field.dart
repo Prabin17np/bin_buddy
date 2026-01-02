@@ -7,7 +7,10 @@ class MyTextFormField extends StatelessWidget {
   final bool obscureText;
   final bool showToggle;
   final VoidCallback? onToggle;
-  final TextEditingController? controller; // <-- Add this
+  final TextEditingController? controller;
+
+  // ADD VALIDATOR
+  final String? Function(String?)? validator;
 
   const MyTextFormField({
     super.key,
@@ -16,26 +19,38 @@ class MyTextFormField extends StatelessWidget {
     this.obscureText = false,
     this.showToggle = false,
     this.onToggle,
-    this.controller, // <-- Add this
+    this.controller,
+    this.validator, // ADD THIS
   });
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      controller: controller, // <-- Add this
+    return TextFormField(
+      // CHANGED FROM TextField
+      controller: controller,
       obscureText: obscureText,
+      validator: validator, // PASS VALIDATOR
       style: GoogleFonts.inter(color: Colors.black87),
       decoration: InputDecoration(
         labelText: label,
         labelStyle: GoogleFonts.inter(color: Colors.black87),
         floatingLabelBehavior: FloatingLabelBehavior.never,
         contentPadding: const EdgeInsets.symmetric(vertical: 12),
+
         enabledBorder: UnderlineInputBorder(
           borderSide: BorderSide(color: underlineColor, width: 2),
         ),
         focusedBorder: UnderlineInputBorder(
           borderSide: BorderSide(color: underlineColor, width: 2.5),
         ),
+
+        errorBorder: const UnderlineInputBorder(
+          borderSide: BorderSide(color: Colors.red, width: 2),
+        ),
+        focusedErrorBorder: const UnderlineInputBorder(
+          borderSide: BorderSide(color: Colors.red, width: 2.5),
+        ),
+
         suffixIcon: showToggle
             ? IconButton(
                 icon: Icon(
