@@ -1,4 +1,5 @@
 import 'package:bin_buddy/features/dashboard/presentation/pages/bottom_navigation_page.dart';
+import 'package:bin_buddy/features/auth/presentation/pages/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:bin_buddy/widgets/my_button.dart';
@@ -146,9 +147,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       // Navigate to HomeScreen
                       Navigator.pushReplacement(
                         context,
-                        MaterialPageRoute(
-                          builder: (_) => const BottomNavigationScreen(),
-                        ),
+                        MaterialPageRoute(builder: (_) => const LoginScreen()),
                       );
                     }
                   },
