@@ -1,11 +1,11 @@
+import 'package:bin_buddy/core/error/failures.dart';
+import 'package:bin_buddy/core/usecases/app_usecases.dart';
+import 'package:bin_buddy/features/auth/data/repositories/auth_repository.dart';
+import 'package:bin_buddy/features/auth/domain/entities/auth_entity.dart';
+import 'package:bin_buddy/features/auth/domain/repositories/auth_repository.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:bin_buddy/core/error/failures.dart';
-import 'package:bin_buddy/core/usecases/app_usecases.dart';
-import 'package:bin_buddy/features/auth/domain/repositories/auth_repository.dart';
-import 'package:bin_buddy/features/auth/domain/entities/auth_entity.dart';
-import 'package:vedaverse/features/auth/domain/repositories/auth_repository.dart';
 
 // Provider
 final loginUseCaseProvider = Provider((ref) {
@@ -23,8 +23,7 @@ class LoginUsecaseParams extends Equatable {
   List<Object?> get props => [email, password];
 }
 
-class LoginUsecase
-    implements UseCaseWithParams<AuthEntity, LoginUsecaseParams> {
+class LoginUsecase implements UsecaseWithParms<AuthEntity, LoginUsecaseParams> {
   final IAuthRepository _authRepository;
 
   LoginUsecase({required IAuthRepository authRepository})
