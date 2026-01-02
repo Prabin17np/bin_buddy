@@ -1,60 +1,108 @@
-import 'package:bin_buddy/features/dashboard/presentation/pages/bottom_navigation_page.dart';
-import 'package:bin_buddy/features/auth/presentation/pages/login_page.dart';
+import 'package:bin_buddy/features/auth/presentation/state/auth_state.dart';
+import 'package:bin_buddy/features/auth/presentation/view_model/auth_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:bin_buddy/widgets/my_button.dart';
 import 'package:bin_buddy/widgets/my_text_form_field.dart';
-import 'package:bin_buddy/common/snackbar_helper.dart'; // <-- Your snackbar file
+import 'package:bin_buddy/common/snackbar_helper.dart';
+import 'package:bin_buddy/features/auth/presentation/pages/login_page.dart';
 
-class SignupScreen extends StatefulWidget {
+class SignupScreen extends ConsumerStatefulWidget {
   const SignupScreen({super.key});
 
   @override
-  State<SignupScreen> createState() => _SignupScreenState();
+  ConsumerState<SignupScreen> createState() => _SignupScreenState();
 }
 
-class _SignupScreenState extends State<SignupScreen> {
-  bool passwordVisible = false;
-  bool confirmPasswordVisible = false;
+class _SignupScreenState extends ConsumerState<SignupScreen> {
+  final _formKey = GlobalKey<FormState>();
 
-  // Controllers for each input field
-  final TextEditingController fullNameController = TextEditingController();
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmPasswordController =
+  final TextEditingController _fullNameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
       TextEditingController();
+
+  bool _passwordVisible = false;
+  bool _confirmPasswordVisible = false;
 
   final Color background = const Color(0xFFFCEEEE);
   final Color deepGreen = const Color(0xFF1F5E24);
   final Color underlineGreen = const Color(0xFF2F7330);
 
   @override
+  void dispose() {
+    _fullNameController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
+    super.dispose();
+  }
+
+  void _handleSignup() {
+    if (_formKey.currentState!.validate()) {
+      // if (_passwordController.text != _confirmPasswordController.text) {
+      //   showMySnackBar(
+      //     context: context,
+      //     message: "Passwords do not match",
+      //     backgroundColor: Colors.red,
+      //   );
+      // }
+
+      ref
+          .read(authViewModelProvider.notifier)
+          .register(
+            fullName: _fullNameController.text,
+            username: _emailController.text.trim().split("@").first,
+            email: _emailController.text,
+            password: _passwordController.text,
+          );
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final double horizontalPadding = 28;
+    ref.listen(authViewModelProvider, (previous, next) {
+      if (next.status == AuthStatus.error) {
+        showMySnackBar(
+          context: context,
+          message: next.errorMessage ?? "Login Failed",
+          backgroundColor: Colors.redAccent,
+        );
+      } else if (next.status == AuthStatus.register) {
+        showMySnackBar(
+          context: context,
+          message: "Login Successfull",
+          backgroundColor: Colors.green.shade900,
+        );
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (_) => const LoginScreen()),
+        );
+      }
+    });
 
     return Scaffold(
       backgroundColor: background,
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
+          padding: const EdgeInsets.symmetric(horizontal: 28),
+          child: Form(
+            key: _formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const SizedBox(height: 20),
 
-                // Logo
-                Center(
-                  child: Image.asset(
-                    'assets/images/logo.jpg',
-                    height: 170,
-                    fit: BoxFit.contain,
-                  ),
+                Image.asset(
+                  'assets/images/logo.jpg',
+                  height: 170,
+                  fit: BoxFit.contain,
                 ),
 
                 const SizedBox(height: 12),
 
-                // Title
                 Text(
                   'Create Account',
                   style: GoogleFonts.playfairDisplay(
@@ -68,31 +116,52 @@ class _SignupScreenState extends State<SignupScreen> {
 
                 // FULL NAME
                 MyTextFormField(
-                  controller: fullNameController,
+                  controller: _fullNameController,
                   label: "Full Name",
                   underlineColor: underlineGreen,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Full name is required";
+                    }
+                    return null;
+                  },
                 ),
 
                 const SizedBox(height: 22),
 
                 // EMAIL
                 MyTextFormField(
-                  controller: emailController,
+                  controller: _emailController,
                   label: "Email",
                   underlineColor: underlineGreen,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Email is required";
+                    }
+                    return null;
+                  },
                 ),
 
                 const SizedBox(height: 22),
 
                 // PASSWORD
                 MyTextFormField(
-                  controller: passwordController,
+                  controller: _passwordController,
                   label: "Password",
                   underlineColor: underlineGreen,
-                  obscureText: !passwordVisible,
+                  obscureText: !_passwordVisible,
                   showToggle: true,
                   onToggle: () {
-                    setState(() => passwordVisible = !passwordVisible);
+                    setState(() => _passwordVisible = !_passwordVisible);
+                  },
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Password is required";
+                    }
+                    if (value.length < 6) {
+                      return "Password must be at least 6 characters";
+                    }
+                    return null;
                   },
                 ),
 
@@ -100,62 +169,34 @@ class _SignupScreenState extends State<SignupScreen> {
 
                 // CONFIRM PASSWORD
                 MyTextFormField(
-                  controller: confirmPasswordController,
+                  controller: _confirmPasswordController,
                   label: "Confirm Password",
                   underlineColor: underlineGreen,
-                  obscureText: !confirmPasswordVisible,
+                  obscureText: !_confirmPasswordVisible,
                   showToggle: true,
                   onToggle: () {
                     setState(
-                      () => confirmPasswordVisible = !confirmPasswordVisible,
+                      () => _confirmPasswordVisible = !_confirmPasswordVisible,
                     );
+                  },
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Confirm your password";
+                    }
+                    return null;
                   },
                 ),
 
                 const SizedBox(height: 28),
 
-                // SIGN UP BUTTON
                 MyButton(
                   text: "Sign Up",
                   color: deepGreen,
-                  onPressed: () {
-                    // Validation
-                    if (fullNameController.text.isEmpty ||
-                        emailController.text.isEmpty ||
-                        passwordController.text.isEmpty ||
-                        confirmPasswordController.text.isEmpty) {
-                      showMySnackBar(
-                        context: context,
-                        message: "Please fill in all fields",
-                        backgroundColor: Colors.red,
-                      );
-                    } else if (passwordController.text !=
-                        confirmPasswordController.text) {
-                      showMySnackBar(
-                        context: context,
-                        message: "Passwords do not match",
-                        backgroundColor: Colors.red,
-                      );
-                    } else {
-                      // Success
-                      showMySnackBar(
-                        context: context,
-                        message: "Signup Successful",
-                        backgroundColor: Colors.green,
-                      );
-
-                      // Navigate to HomeScreen
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(builder: (_) => const LoginScreen()),
-                      );
-                    }
-                  },
+                  onPressed: _handleSignup,
                 ),
 
                 const SizedBox(height: 20),
 
-                // Already have account? Login
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -164,11 +205,9 @@ class _SignupScreenState extends State<SignupScreen> {
                       style: GoogleFonts.inter(fontWeight: FontWeight.w500),
                     ),
                     GestureDetector(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
+                      onTap: () => Navigator.pop(context),
                       child: Text(
-                        ' Login',
+                        " Login",
                         style: GoogleFonts.inter(
                           color: Colors.blueAccent,
                           fontWeight: FontWeight.w700,
