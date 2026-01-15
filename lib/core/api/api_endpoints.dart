@@ -13,28 +13,13 @@ class ApiEndpoints {
   static const Duration receiveTimeout = Duration(seconds: 30);
 
   // Hack: ========== Batch Endpoints ===========
-  static const String batches = "/batches";
-  static String batchById(String id) => '/batches/$id';
+  static const String genre = "/genre";
+  static String genreById(String id) => '/genre/$id';
 
-  // Hack: ========== Categories Endpoints ===========
-  static const String categories = "/categories";
-  static String categoriesById(String id) => '/categories/$id';
-
-  // Hack: ========== Student Endpoints ===========
-  static const String students = "/students";
-  static const String studentLogin = "/students/login";
-  static const String studentRegister = "/students/register";
-  static String studentById(String id) => '/students/$id';
-  static String studentPhoto(String id) => "/students/$id/photo";
-
-  // Hack: ========== Item Endpoints ===========
-  static const String items = "/items";
-  static String itemsById(String id) => '/items/$id';
-  static String itemsClaim(String id) => '/items/$id/claim';
-
-  // Hack: ========== Comment Endpoints ===========
-  static const String comments = "/comments";
-  static String commentById(String id) => '/comments/$id';
-  static String commentsByItems(String itemId) => "comments/item/$itemId";
-  static String commentLike(String id) => '/items/$id/like';
+  // Hack: ========== User Endpoints ===========
+  // static const String users = "/users";
+  static const String userLogin = "/api/auth/login";
+  static const String userRegister = "/api/auth/register";
+  // static String userById(String id) => '/users/$id';
+  // static String userPhoto(String id) => "/users/$id/photo";
 }
