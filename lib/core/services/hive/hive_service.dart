@@ -2,6 +2,7 @@ import 'package:bin_buddy/core/constants/hive_table_constant.dart';
 import 'package:bin_buddy/features/auth/data/models/auth_hive_model.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final hiveServiceProvider = Provider<HiveService>((ref) {
@@ -67,4 +68,33 @@ class HiveService {
 
   // logout
   Future<void> logoutUser() async {}
+
+  // Hack: =================== Genre CRUD Operations ===========================
+  Box<GenreHiveModel> get _genreBox =>
+      Hive.box<GenreHiveModel>(HiveTableConstant.genreTable);
+
+  List<GenreHiveModel> getAllGenre() {
+    return _genreBox.values.toList();
+  }
+
+  GenreHiveModel? getGenreById(String genreId) {
+    return _genreBox.get(genreId);
+  }
+
+  Future<GenreHiveModel> createGenre(GenreHiveModel genre) async {
+    await _genreBox.put(genre.genreId, genre);
+    return genre;
+  }
+
+  Future<void> updateGenre(GenreHiveModel genre) async {
+    await _genreBox.put(genre.genreId, genre);
+  }
+
+  Future<void> deleteGenre(String genreId) async {
+    await _genreBox.delete(genreId);
+  }
+
+  Future<void> deleteAllGenre() async {
+    await _genreBox.clear();
+  }
 }
