@@ -1,4 +1,5 @@
 import 'package:bin_buddy/core/constants/hive_table_constant.dart';
+import 'package:bin_buddy/features/genre/domain/entities/genre_entity.dart';
 import 'package:hive/hive.dart';
 import 'package:uuid/uuid.dart';
 

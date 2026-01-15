@@ -1,5 +1,6 @@
 import 'package:bin_buddy/core/constants/hive_table_constant.dart';
 import 'package:bin_buddy/features/auth/data/models/auth_hive_model.dart';
+import 'package:bin_buddy/features/genre/data/models/genre_hive_model.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 
