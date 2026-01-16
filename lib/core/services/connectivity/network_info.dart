@@ -27,7 +27,7 @@ class NetworkInfo implements INetworkInfo {
     }
 
     // return await _checkForInternet();
-    return true; // aaile ko lagi true nai return garne, localhost ma kaam garne ho ni ta
+    return true; // right now return true, cause we work in localhost
   }
 
   Future<bool> _checkForInternet() async {

@@ -11,8 +11,8 @@ abstract class Failure extends Equatable {
 }
 
 /// Local database failure
-class LocalDatabaseFailure extends Failure {
-  const LocalDatabaseFailure({
+class LocalDataBaseFailure extends Failure {
+  const LocalDataBaseFailure({
     String message = 'Local database operation failed',
   }) : super(message);
 }

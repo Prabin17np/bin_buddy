@@ -2,8 +2,7 @@ class ApiEndpoints {
   ApiEndpoints._();
 
   //Info: Base URL
-  static const String baseUrl =
-      "http://10.0.2.2:3000/api/v1"; // info: for android
+  static const String baseUrl = "http://10.0.2.2:5050/"; // info: for android
   // static const String baseUrl =
   //     "http://192.168.100.8:3000/api/v1"; // info: for physical device use computers IP
 
@@ -13,8 +12,8 @@ class ApiEndpoints {
   static const Duration receiveTimeout = Duration(seconds: 30);
 
   // Hack: ========== Batch Endpoints ===========
-  static const String genre = "/genre";
-  static String genreById(String id) => '/genre/$id';
+  // static const String genre = "/genre";
+  // static String genreById(String id) => '/genre/$id';
 
   // Hack: ========== User Endpoints ===========
   // static const String users = "/users";
