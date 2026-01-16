@@ -1,7 +1,9 @@
 import 'package:bin_buddy/core/constants/hive_table_constant.dart';
 import 'package:bin_buddy/features/auth/data/models/auth_hive_model.dart';
+
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final hiveServiceProvider = Provider<HiveService>((ref) {
@@ -45,7 +47,7 @@ class HiveService {
 
   // Login user
   Future<AuthHiveModel?> loginUser(String email, String password) async {
-    final user = await _authBox.values.where(
+    final user = _authBox.values.where(
       (user) => user.email == email && user.password == password,
     );
 
